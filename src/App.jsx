@@ -1,6 +1,8 @@
-import Player from './components/Player.jsx';
+import Player from "./components/Player.jsx";
 
 function App() {
+  function handleChange() {}
+
   return (
     <>
       <Player />
