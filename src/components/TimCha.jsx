@@ -6,12 +6,18 @@ export default function TimerChallenge({ title, targetTime }) {
   const [timSta, setTimSta] = useState(false);
   const [timExp, setTimExp] = useState(false);
 
+  let timer;
+
   function handleStart() {
-    setTimeout(() => {
+    timer = setTimeout(() => {
       setTimExp(true);
     }, targetTime * 1000);
 
     setTimSta(true);
+  }
+
+  function handleStop() {
+    clearTimeout(timer);
   }
 
   return (
@@ -22,7 +28,9 @@ export default function TimerChallenge({ title, targetTime }) {
         {targetTime} second{targetTime > 1 ? "s" : ""}
       </p>
       <p>
-        <button onClick={handleStart}>{timSta ? "Stop" : "Start"}Panty</button>
+        <button onClick={timSta ? handleStop : handleStart}>
+          {timSta ? "Stop" : "Start"}Panty
+        </button>
       </p>
       <p className={timSta ? "active" : undefined}>
         {timSta ? "Sniffing..." : "SniffInactive"}
