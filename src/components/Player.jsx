@@ -1,18 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Buto from "./Buto";
 import azz from "../assets/s.png";
 
 export default function Player() {
-  const [entPla, setEntPla] = useState(null);
-  const [subm, setSubm] = useState(false);
+  const plaNam = useRef();
 
-  function handleChange(event) {
-    setSubm(false);
-    setEntPla(event.target.value.toUpperCase());
-  }
+  const [entPla, setEntPla] = useState(null);
 
   function handleClick() {
-    setSubm(true);
+    setEntPla(plaNam.current.value.toUpperCase());
   }
 
   return (
@@ -22,9 +18,9 @@ export default function Player() {
         alt="ass"
         style={{ width: "40px", margin: "30px", borderRadius: "100px" }}
       />
-      <h2>Suckher {subm ? entPla : "fucker"}</h2>
+      <h2>Suckher {entPla ?? "fucker"}</h2>
       <p>
-        <input type="text" onChange={handleChange} value={entPla} />
+        <input ref={plaNam} type="text" />
         <button onClick={handleClick}>Set Name</button>
       </p>
     </section>
