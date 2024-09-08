@@ -17,7 +17,7 @@ export default function Player() {
       <img
         src={azz}
         alt="ass"
-        style={{ width: "200px", margin: "30px", borderRadius: "100px" }}
+        style={{ width: "90px", margin: "30px", borderRadius: "100px" }}
       />
       <h2>Suckher entity</h2>
       <p>
