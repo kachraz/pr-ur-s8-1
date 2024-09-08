@@ -9,6 +9,7 @@ export default function Player() {
 
   function handleClick() {
     setEntPla(plaNam.current.value.toUpperCase());
+    plaNam.current.value = "🐵";
   }
 
   return (
