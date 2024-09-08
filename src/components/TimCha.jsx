@@ -1,15 +1,17 @@
 // Time challenge functin
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+// let timer;
 
 export default function TimerChallenge({ title, targetTime }) {
+  const timer = useRef();
+
   const [timSta, setTimSta] = useState(false);
   const [timExp, setTimExp] = useState(false);
 
-  let timer;
-
   function handleStart() {
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       setTimExp(true);
     }, targetTime * 1000);
 
@@ -17,7 +19,7 @@ export default function TimerChallenge({ title, targetTime }) {
   }
 
   function handleStop() {
-    clearTimeout(timer);
+    clearTimeout(timer.current);
   }
 
   return (
