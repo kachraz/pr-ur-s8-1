@@ -5,3 +5,4 @@
 # Notes -
 
 1. This one introducing something called `refs` , because we were wrting way too much code for somple value management. If you see
+2. `useImperativeHandle()` is used for exposing an `api` of child component , is used with `forwardRef()`
