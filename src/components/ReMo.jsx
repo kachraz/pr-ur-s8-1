@@ -2,7 +2,7 @@
 
 export default function ResultModal({ result, targetTime }) {
   return (
-    <dialog className="result-modal" open>
+    <dialog className="result-modal">
       <h2>u {result}</h2>
       <p>
         TargetTime <strong>{targetTime} secs.</strong>
