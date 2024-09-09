@@ -9,20 +9,25 @@ export default function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
   const dialog = useRef();
 
-  const [timSta, setTimSta] = useState(false);
-  const [timExp, setTimExp] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(targetTime * 1000);
+
+  const timerIsActive = timeRemaining > 0 && timeRemaining < targetTime * 1000;
+
+  if (timeRemaining <= 0) {
+    clearInterval(timer.current);
+    setTimeRemaining(targetTime * 1000);
+    dialog.current.open();
+  }
 
   function handleStart() {
-    timer.current = setTimeout(() => {
-      setTimExp(true);
-      dialog.current.open();
-    }, targetTime * 1000);
-
-    setTimSta(true);
+    timer.current = setInterval(() => {
+      setTimeRemaining((prevTimeRemaining) => prevTimeRemaining - 10);
+    }, 10);
   }
 
   function handleStop() {
-    clearTimeout(timer.current);
+    dialog.current.open();
+    clearInterval(timer.current);
   }
 
   return (
@@ -34,12 +39,12 @@ export default function TimerChallenge({ title, targetTime }) {
           {targetTime} second{targetTime > 1 ? "s" : ""}
         </p>
         <p>
-          <button onClick={timSta ? handleStop : handleStart}>
-            {timSta ? "Stop" : "Start"}Panty
+          <button onClick={timerIsActive ? handleStop : handleStart}>
+            {timerIsActive ? "Stop" : "Start"}Panty
           </button>
         </p>
-        <p className={timSta ? "active" : undefined}>
-          {timSta ? "Sniffing..." : "SniffInactive"}
+        <p className={timerIsActive ? "active" : undefined}>
+          {timerIsActive ? "Sniffing..." : "SniffInactive"}
         </p>
       </section>
     </>
